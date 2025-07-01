@@ -1,0 +1,46 @@
+<div class="card flex justify-center">
+  <p-dialog
+    header="{{ data.title }}"
+    [modal]="true"
+    [closable]="true"
+    [position]="'top'"
+    [dismissableMask]="true"
+    [(visible)]="data.display"
+  >
+    <h3 class="message">{{ data.message }}</h3>
+
+    <div class="p-dialog-footer flex justify-end gap-2 mt-6">
+      @if(!data.isDelete){
+      <button
+        pButton
+        size="small"
+        [rounded]="true"
+        (click)="data.display = false"
+        class="bg-primary"
+      >
+        <span> Fechar </span>
+      </button>
+      } @if(data.isDelete){
+      <button
+        pButton
+        type="button"
+        [rounded]="true"
+        label="Cancelar"
+        (click)="data.display = false"
+        class="bg-transparent"
+      ></button>
+
+      <button
+        pButton
+        size="small"
+        [rounded]="true"
+        (click)="handleConfirmDelete.emit({ action: 'delete', isDelete: true })"
+        class="bg-primary"
+      >
+        <i class="pi pi-trash"></i>
+        <span class="mr-2">Excluir</span>
+      </button>
+      }
+    </div>
+  </p-dialog>
+</div>

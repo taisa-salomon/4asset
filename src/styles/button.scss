@@ -1,0 +1,53 @@
+button,
+p-button button {
+  font-weight: 600;
+  padding: 12px 16px !important;
+
+  &:hover {
+    opacity: 0.5;
+  }
+
+  i {
+    font-weight: 500;
+  }
+}
+
+button,
+button span {
+  font-weight: 600;
+  line-height: 1rem;
+  font-size: 0.875rem;
+  text-decoration: inherit;
+}
+
+button.bg-primary,
+p-button.bg-primary button {
+  border-color: var(--primary);
+  background: var(--primary) !important;
+
+  &:hover {
+    border-color: transparent !important;
+    background: var(--primary) !important;
+  }
+
+  i,
+  span {
+    color: white;
+  }
+}
+
+button.bg-transparent,
+p-button.bg-transparent button {
+  background: transparent;
+  border-color: transparent !important;
+
+  &:hover {
+    border-color: transparent !important;
+    background: rgba(51, 65, 85, 0.1) !important;
+  }
+
+  i,
+  span {
+    color: var(--primary);
+  }
+}

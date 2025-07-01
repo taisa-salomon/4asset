@@ -1,0 +1,9 @@
+<div *ngIf="loader.isLoading$ | async" class="card flex justify-center">
+  <p-progress-spinner
+    aria-label="Loading"
+    strokeWidth="6"
+    fill="transparent"
+    animationDuration="2s"
+    [style]="{ width: '100px', height: '100px' }"
+  />
+</div>

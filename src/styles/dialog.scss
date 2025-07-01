@@ -1,0 +1,21 @@
+.card,
+.p-dialog-top .p-dialog {
+  background: white !important;
+}
+
+p-dialog {
+  width: 25rem;
+
+  .p-dialog-header {
+    padding-bottom: 12px;
+    color: var(--text-color-dark);
+  }
+
+  h3,
+  .message {
+    color: var(--text-color);
+  }
+  .p-dialog-footer {
+    padding: 0 !important;
+  }
+}

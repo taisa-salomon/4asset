@@ -1,0 +1,142 @@
+<div class="card flex justify-center">
+  <p-dialog
+    [modal]="true"
+    [closable]="true"
+    [position]="'top'"
+    header="{{ title }}"
+    [(visible)]="display"
+    [dismissableMask]="true"
+    (onHide)="dialogClose()"
+  >
+    <div class="p-fluid">
+      <form #formControl="ngForm" (ngSubmit)="submitForm()">
+        <div class="input-field !mt-0">
+          <label for="name">Nome:</label>
+          <input
+            name
+            id="name"
+            required
+            pInputText
+            type="text"
+            name="name"
+            autocomplete="off"
+            #nameInput="ngModel"
+            [(ngModel)]="form.name"
+            placeholder="Insira o nome"
+            [class.ng-invalid.ng-dirty]="
+              nameInput.invalid && (nameInput.dirty || nameInput.touched)
+            "
+          />
+
+          @if(nameInput.invalid && (nameInput.dirty || nameInput.touched)){
+          <small class="p-error"> Nome é um campo obrigatório. </small>
+          }
+        </div>
+
+        <div class="input-field">
+          <label for="email">E-mail:</label>
+          <input
+            email
+            required
+            pInputText
+            id="email"
+            type="email"
+            name="email"
+            autocomplete="off"
+            #emailInput="ngModel"
+            [(ngModel)]="form.email"
+            placeholder="Insira o e-mail"
+            [class.ng-invalid.ng-dirty]="
+              emailInput.invalid && (emailInput.dirty || emailInput.touched)
+            "
+          />
+
+          @if(emailInput.invalid && (emailInput.dirty || emailInput.touched)){
+          <small class="p-error">
+            @if(emailInput.errors?.['required']){ E-mail é um campo obrigatório.
+            } @else if (emailInput.errors?.['email']) {E-mail informado é
+            inválido.}
+          </small>
+          }
+        </div>
+
+        <div class="input-field">
+          <label for="phone">Telefone:</label>
+          <p-inputmask
+            phone
+            required
+            id="phone"
+            type="text"
+            name="phone"
+            autocomplete="off"
+            #phoneInput="ngModel"
+            mask="(99) 99999-9999"
+            [(ngModel)]="form.phone"
+            placeholder="Insira o telefone"
+            class="input-mask"
+            [class.ng-invalid.ng-dirty]="
+              phoneInput.invalid && (phoneInput.dirty || phoneInput.touched)
+            "
+          />
+
+          @if( phoneInput.invalid && ( phoneInput.dirty || phoneInput.touched)){
+          <small class="p-error"> Telefone é um campo obrigatório. </small>
+          }
+        </div>
+
+        <div class="input-field">
+          <label for="birthDate">Data de nascimento:</label>
+          <p-inputmask
+            required
+            birthDate
+            id="birthDate"
+            name="birthDate"
+            autocomplete="off"
+            mask="99/99/9999"
+            #birthDateInput="ngModel"
+            [(ngModel)]="form.birthDate"
+            placeholder="Insira a data de nascimento"
+            class="input-mask"
+            [class.ng-invalid.ng-dirty]="
+              birthDateInput.invalid &&
+              (birthDateInput.dirty || birthDateInput.touched)
+            "
+          />
+
+          @if( birthDateInput.invalid && ( birthDateInput.dirty ||
+          birthDateInput.touched)){
+          <small class="p-error">
+            Data de nascimento é um campo obrigatório.
+          </small>
+          }
+        </div>
+      </form>
+    </div>
+
+    <div class="p-dialog-footer mt-7 flex flex-col gap-2">
+      <button
+        pButton
+        type="submit"
+        [rounded]="true"
+        class="bg-primary"
+        (click)="submitForm()"
+        [disabled]="!formControl.valid"
+      >
+        <span class="mr-2t">
+          {{ !person ? "Novo Cadastro" : "Salvar alterações" }}
+        </span>
+        <i class="pi pi-arrow-right"></i>
+      </button>
+
+      <button
+        pButton
+        type="button"
+        label="Cancelar"
+        [rounded]="true"
+        class="bg-transparent"
+        (click)="display = !display"
+      ></button>
+    </div>
+  </p-dialog>
+</div>
+<p-toast />

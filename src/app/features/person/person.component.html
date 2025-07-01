@@ -1,0 +1,40 @@
+<section
+  class="w-full h-[calc(100%-64px)] py-4 px-44 flex items-center justify-start flex-col bg-gray-900 bg-cover bg-no-repeat bg-top-center"
+  style="background-image: url('/assets/bg-image.png')"
+>
+  <nav class="w-full flex gap-22 items-center justify-between">
+    <h1 class="text-white text-xl">Cadastro de pessoas</h1>
+    <button
+      pButton
+      pRipple
+      [outlined]="true"
+      (click)="visibleDialogRegister = !visibleDialogRegister"
+      class="border !border-white rounded-lg !bg-transparent hover:!opacity-50 px-4 py-2"
+    >
+      <span class="mr-2 text-sm text-white">Novo Cadastro</span>
+      <i class="pi pi-arrow-right text-white"></i>
+    </button>
+  </nav>
+
+  <br />
+
+  <app-table
+    class="w-full"
+    [isAction]="true"
+    [listItens]="list"
+    [columns]="columns"
+    (onLineSelected)="onAction($event)"
+  />
+
+  @if(visibleDialogRegister) {
+  <app-register-person
+    [person]="person"
+    (handleDialogClose)="onDialogClose($event)"
+  />
+  } @if(modalInformationSuccess && modalInformationSuccess.display){
+  <app-confirm-dialog
+    [data]="modalInformationSuccess"
+    (handleConfirmDelete)="deleteRegistration($event)"
+  ></app-confirm-dialog>
+  }
+</section>

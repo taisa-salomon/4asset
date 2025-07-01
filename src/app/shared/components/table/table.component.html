@@ -1,0 +1,77 @@
+<p-table
+  [rows]="5"
+  [paginator]="true"
+  [columns]="columns"
+  [value]="listItens"
+  [tableStyle]="{
+    'min-width': '20rem'
+  }"
+>
+  <ng-template #header let-columns>
+    <tr>
+      @for (col of columns; track $index) {
+      <th>
+        <span>
+          {{ col.header }}
+        </span>
+      </th>
+      }
+
+      <!-- AÇÕES -->
+      @if(isAction) {
+      <th>
+        @if(actionHeader){
+        {{ actionHeader }}
+        }
+      </th>
+      }
+    </tr>
+  </ng-template>
+
+  <ng-template #body let-item let-columns="columns">
+    <tr>
+      @for (col of columns; track $index) {
+      <td>
+        <span>
+          @if(!col.mask){
+          {{ item[col.field] | displayDashOnNull }}
+          }
+
+          <!-- mask: 'tel' -->
+          @if(col.mask && col.mask === 'tel') {
+          {{ item[col.field] | displayDashOnNull | phoneMask }}
+          }
+
+          <!-- mask: 'date' -->
+          @if(col.mask && col.mask === 'date') {
+          {{ item[col.field] | displayDashOnNull | formatDate }}
+          }
+        </span>
+      </td>
+      }
+
+      <!-- AÇÕES -->
+      @if(isAction){
+      <td class="actions">
+        <p-button
+          [text]="true"
+          variant="text"
+          [rounded]="true"
+          class="bg-transparent mr-2"
+          (onClick)="onAction({ type: 'edit', data: item })"
+          icon="pi pi-pencil"
+        />
+
+        <p-button
+          [text]="true"
+          variant="text"
+          [rounded]="true"
+          class="bg-transparent"
+          (onClick)="onAction({ type: 'del', data: item })"
+          icon="pi pi-trash"
+        />
+      </td>
+      }
+    </tr>
+  </ng-template>
+</p-table>

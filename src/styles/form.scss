@@ -1,0 +1,45 @@
+.p-inputtext {
+  color: var(--text-color) !important;
+}
+
+.input-mask .p-inputtext,
+.p-inputtext {
+  background: white !important;
+  color: var(--text-color) !important;
+  border-color: var(--border-color) !important;
+
+  &.ng-valid {
+    border-color: var(--border-color) !important;
+  }
+
+  &.ng-invalid {
+    border-color: var(--danger) !important;
+  }
+}
+
+.input-mask .p-inputtext {
+  margin-top: 6px !important;
+}
+
+.input-field {
+  margin-top: 0.75rem;
+
+  label {
+    font-size: 0.875rem;
+    line-height: 0.75rem;
+    color: var(--text-color);
+  }
+
+  input,
+  p-inputmask {
+    margin-top: 0.375rem !important;
+  }
+
+  small.p-error {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.75rem;
+    font-style: italic;
+    color: var(--danger);
+  }
+}
